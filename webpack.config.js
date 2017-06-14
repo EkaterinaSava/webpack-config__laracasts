@@ -1,16 +1,22 @@
 'use strict';
 
-var webpack = require('webpack');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var inProduction = (process.env.NODE_ENV === 'production');
 
 module.exports = {
 
-  entry: __dirname + '/src/main.js',
+  entry: {
+    public: [
+       __dirname + '/src/main.js',
+       __dirname + '/src/main.scss'
+    ]
+  },
 
   output: {
     path: __dirname + '/dist',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
 
   module: {
@@ -19,12 +25,10 @@ module.exports = {
 
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
-      },
-
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ExtractTextPlugin.extract({
+          use: ['css-loader', 'sass-loader'],
+          fallback: 'style-loader'
+        })
       },
 
       {
@@ -38,6 +42,8 @@ module.exports = {
   },
 
   plugins: [
+    new ExtractTextPlugin('[name].css'),
+
 
   ]
 
@@ -46,7 +52,13 @@ module.exports = {
 if ( inProduction ) {
 
   module.exports.plugins.push(
-    new webpack.optimize.UglifyJsPlugin()
+    //__минификация JS для production
+    new webpack.optimize.UglifyJsPlugin(),
+
+    //__минификация CSS для production
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
   )
 
 }
