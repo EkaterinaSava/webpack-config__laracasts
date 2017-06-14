@@ -1,0 +1,6 @@
+/.idea/
+robots.txt
+Thumbs.db
+.DS_store
+.idea
+/node_modules
