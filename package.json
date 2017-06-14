@@ -1,0 +1,24 @@
+{
+  "name": "webpack-config__laracasts",
+  "version": "1.0.0",
+  "description": "via screencast by `Laracasts`",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack src/main.js dist/bundle.js",
+    "watch": "webpack src/main.js dist/bundle.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EkaterinaSava/webpack-config__laracasts.git"
+  },
+  "keywords": [],
+  "author": "Kate Sava",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EkaterinaSava/webpack-config__laracasts/issues"
+  },
+  "homepage": "https://github.com/EkaterinaSava/webpack-config__laracasts#readme",
+  "devDependencies": {
+    "webpack": "^2.6.1"
+  }
+}
