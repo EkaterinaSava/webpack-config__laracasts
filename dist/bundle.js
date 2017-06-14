@@ -63,14 +63,73 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-alert("it's main.js here!");
+"use strict";
+//__способы экспортировать:
+
+//__1.
+// export default (message) {
+//   alert(message);
+// }
+
+
+//__2.
+// export function notify(message) {
+//   alert(message);
+// }
+//
+// export function log(message) {
+//   console.log(message);
+// }
+
+
+//__3.
+function announce(message) {
+  alert(message);
+}
+
+function log(message) {
+  console.log(message);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  announce: announce,
+  log: log
+});
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Notify__ = __webpack_require__(0);
+
+
+//__способы импортировать, исходя из саособа экспорта (см.файл notify.js)
+//__1.
+//import notify from './Notify';
+
+//__2.
+//import {notify, log} from './Notify';
+
+//__3.
+
+
+// notify('Hello, I\'m alert');
+// log('Hello, I\'m console log')
+
+//__для третьего случая мы получим объект, поэтому обращаться к функциям внутри будем как к методам объекта
+//console.log(notify);
+__WEBPACK_IMPORTED_MODULE_0__Notify__["a" /* default */].announce('I\'m alert');
+__WEBPACK_IMPORTED_MODULE_0__Notify__["a" /* default */].log('I\'m console log');
 
 
 /***/ })
