@@ -17,3 +17,6 @@ import notify from './Notify';
 //console.log(notify);
 notify.announce('I\'m alert');
 notify.log('I\'m console log');
+
+//__подключим css:
+require('./main.css');
