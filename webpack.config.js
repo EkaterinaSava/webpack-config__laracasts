@@ -2,6 +2,8 @@
 
 var webpack = require('webpack');
 
+var inProduction = (process.env.NODE_ENV === 'production');
+
 module.exports = {
 
   entry: __dirname + '/src/main.js',
@@ -28,6 +30,18 @@ module.exports = {
 
     ]
 
-  }
+  },
+
+  plugins: [
+
+  ]
 
 };
+
+if ( inProduction ) {
+
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin()
+  )
+
+}

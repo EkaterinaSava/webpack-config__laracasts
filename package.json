@@ -4,8 +4,9 @@
   "description": "via screencast by `Laracasts`",
   "main": "index.js",
   "scripts": {
-    "build": "webpack src/main.js dist/bundle.js",
-    "watch": "webpack src/main.js dist/bundle.js --watch"
+    "build": "webpack",
+    "dev": "webpack  --watch",
+    "prod": "NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
