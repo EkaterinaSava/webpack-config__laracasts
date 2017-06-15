@@ -1,16 +1,18 @@
 'use strict';
 
 const webpack = require('webpack');
+const path = require('path');
+const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var inProduction = (process.env.NODE_ENV === 'production');
+const PurifyCSSPlugin = require('purifycss-webpack');
+const inProduction = (process.env.NODE_ENV === 'production');
 
 module.exports = {
 
   entry: {
     public: [
-       __dirname + '/src/main.js',
-       __dirname + '/src/main.scss'
+      __dirname + '/src/main.js',
+      __dirname + '/src/main.scss'
     ]
   },
 
@@ -50,7 +52,14 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('[name].css'),
+
+    new PurifyCSSPlugin({
+      paths: glob.sync(path.join(__dirname, 'index.html')),
+      //__минификация CSS для production
+      minimize: inProduction
+    })
+
   ]
 
 };
@@ -59,12 +68,12 @@ if ( inProduction ) {
 
   module.exports.plugins.push(
     //__минификация JS для production
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin()
 
     //__минификация CSS для production
-    new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
+    // new webpack.LoaderOptionsPlugin({
+    //   minimize: true
+    // })
   )
 
 }
