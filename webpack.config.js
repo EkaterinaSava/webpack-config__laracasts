@@ -38,11 +38,20 @@ module.exports = {
       },
 
       {
-        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name].[hash].[ext]'
-        }
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        // loader: 'file-loader',
+        // options: {
+        //   name: 'images/[name].[hash].[ext]'
+        // }
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[name].[hash].[ext]'
+            }
+          },
+          'image-webpack-loader'
+        ]
       },
 
       {
@@ -72,7 +81,7 @@ module.exports = {
 
     //__создадим свой кастомный плагин
     //__после того, как вебпак завершит компилляцию
-    //__запишем всю статистику в manifest.json, но т.к. она будет очень большая
+    //__запишем всю статистику в manifest.json, но т.к. она будет очень б ольшая
     //__а нам фактически нужен только один объект
     //__то сузим запись только до значений объекта assetsByChunkName
     function() {
