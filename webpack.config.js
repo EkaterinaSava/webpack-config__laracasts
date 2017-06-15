@@ -32,6 +32,14 @@ module.exports = {
       },
 
       {
+        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[hash].[ext]'
+        }
+      },
+
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
@@ -42,9 +50,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css'),
-
-
+    new ExtractTextPlugin('[name].css')
   ]
 
 };
