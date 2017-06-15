@@ -1,1 +1,12 @@
-body{background-color:#ffb6c1}h1{border:1px dashed gray;background-image:url(images/some-image.d41d8cd98f00b204e9800998ecf8427e.png)}.one{color:#000}
+body {
+  background-color: lightpink;
+}
+
+h1 {
+  border: 1px dashed gray;
+  background-image: url(images/some-image.d41d8cd98f00b204e9800998ecf8427e.png);
+}
+
+.one {
+  color: black;
+}

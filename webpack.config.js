@@ -5,6 +5,9 @@ const path = require('path');
 const glob = require('glob');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCSSPlugin = require('purifycss-webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+//__for production stuff
 const inProduction = (process.env.NODE_ENV === 'production');
 
 module.exports = {
@@ -13,12 +16,13 @@ module.exports = {
     public: [
       __dirname + '/src/main.js',
       __dirname + '/src/main.scss'
-    ]
+    ],
+    vendor: ['jquery']
   },
 
   output: {
     path: __dirname + '/dist',
-    filename: '[name].js'
+    filename: '[name].[chunkhash].js'
   },
 
   module: {
@@ -58,6 +62,12 @@ module.exports = {
       paths: glob.sync(path.join(__dirname, 'index.html')),
       //__минификация CSS для production
       minimize: inProduction
+    }),
+
+    new CleanWebpackPlugin(['dist'], {
+      root: __dirname,
+      verbose: true,
+      dry: false
     })
 
   ]
