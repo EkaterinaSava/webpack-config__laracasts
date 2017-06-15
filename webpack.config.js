@@ -68,7 +68,21 @@ module.exports = {
       root: __dirname,
       verbose: true,
       dry: false
-    })
+    }),
+
+    //__создадим свой кастомный плагин
+    //__после того, как вебпак завершит компилляцию
+    //__запишем всю статистику в manifest.json, но т.к. она будет очень большая
+    //__а нам фактически нужен только один объект
+    //__то сузим запись только до значений объекта assetsByChunkName
+    function() {
+      this.plugin('done', stats => {
+        require('fs').writeFileSync(
+          path.join(__dirname, 'dist/manifest.json'),
+          JSON.stringify(stats.toJson().assetsByChunkName)
+        );
+      });
+    }
 
   ]
 
